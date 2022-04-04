@@ -1,4 +1,5 @@
 include(
     "depconstraints",
-    ":app"
+    ":app",
+    ":presentation"
 )
