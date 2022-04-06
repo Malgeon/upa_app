@@ -3,6 +3,7 @@ include(
     ":app",
     ":presentation",
     ":data",
-    ":domain"
-
+    ":domain",
+    ":model",
+    ":shared"
 )
