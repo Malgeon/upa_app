@@ -24,4 +24,33 @@ android {
 
 dependencies {
 
+    api(platform(project(":depconstraints")))
+    kapt(platform(project(":depconstraints")))
+    androidTestApi(platform(project(":depconstraints")))
+
+    // Architecture Components
+    implementation(Libs.ROOM_KTX)
+    implementation(Libs.ROOM_RUNTIME)
+    kapt(Libs.ROOM_COMPILER)
+
+    // Utils
+    api(Libs.TIMBER)
+    implementation(Libs.GSON)
+
+    // DataStore
+    implementation(Libs.DATA_STORE_PREFERENCES)
+
+    // Kotlin
+    implementation(Libs.KOTLIN_STDLIB)
+
+    // Coroutines
+    api(Libs.COROUTINES)
+
+    // Dagger Hilt
+    implementation(Libs.HILT_ANDROID)
+    kapt(Libs.HILT_COMPILER)
+
+    // Firebase
+    api(Libs.FIREBASE_AUTH)
+
 }
