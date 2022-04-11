@@ -2,7 +2,7 @@ plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("kapt")
-//    id("dagger.hilt.android.plugin")
+    id("dagger.hilt.android.plugin")
     id("androidx.navigation.safeargs.kotlin")
 }
 
@@ -42,6 +42,7 @@ dependencies {
     androidTestApi(platform(project(":depconstraints")))
 
     implementation(project(":presentation"))
+    implementation(project(":shared"))
 
     implementation(Libs.APP_STARTUP)
 
@@ -62,11 +63,11 @@ dependencies {
     kapt(Libs.ROOM_COMPILER)
     implementation(Libs.GSON)
 
-//    // Dagger Hilt
-//    implementation(Libs.HILT_ANDROID)
-//    androidTestImplementation(Libs.HILT_TESTING)
-//    kapt(Libs.HILT_COMPILER)
-//    kaptAndroidTest(Libs.HILT_COMPILER)
+    // Dagger Hilt
+    implementation(Libs.HILT_ANDROID)
+    androidTestImplementation(Libs.HILT_TESTING)
+    kapt(Libs.HILT_COMPILER)
+    kaptAndroidTest(Libs.HILT_COMPILER)
 
     // DataStore
     implementation(Libs.DATA_STORE_PREFERENCES)
