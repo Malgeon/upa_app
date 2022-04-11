@@ -29,5 +29,19 @@ android {
 }
 
 dependencies {
+    api(platform(project(":depconstraints")))
+    kapt(platform(project(":depconstraints")))
+    androidTestApi(platform(project(":depconstraints")))
 
+    // Coroutines
+    api(Libs.COROUTINES)
+
+    api(Libs.CORE_KTX)
+
+    // Dagger Hilt
+    implementation(Libs.HILT_ANDROID)
+    kapt(Libs.HILT_COMPILER)
+
+    // Utils
+    api(Libs.TIMBER)
 }
