@@ -10,6 +10,7 @@ import com.example.upa_app.presentation.util.WhileViewSubscribed
 import com.example.upa_app.shared.di.ApplicationScope
 import com.example.upa_app.shared.di.IoDispatcher
 import com.example.upa_app.shared.di.MainDispatcher
+import com.example.upa_app.shared.di.ReservationEnabledFlag
 import com.example.upa_app.shared.result.Result
 import com.example.upa_app.shared.result.data
 import com.example.upa_app.shared.util.tryOffer
