@@ -28,6 +28,8 @@ dependencies {
     kapt(platform(project(":depconstraints")))
     androidTestApi(platform(project(":depconstraints")))
 
+    implementation(project(":shared"))
+
     // Architecture Components
     implementation(Libs.ROOM_KTX)
     implementation(Libs.ROOM_RUNTIME)
