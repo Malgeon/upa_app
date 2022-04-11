@@ -33,6 +33,11 @@ dependencies {
     kapt(platform(project(":depconstraints")))
     androidTestApi(platform(project(":depconstraints")))
 
+    implementation(project(":shared"))
+    implementation(project(":model"))
+    implementation(project(":data"))
+
+
     // Coroutines
     api(Libs.COROUTINES)
 
@@ -42,6 +47,17 @@ dependencies {
     implementation(Libs.HILT_ANDROID)
     kapt(Libs.HILT_COMPILER)
 
+    // Architecture Components
+    implementation(Libs.LIFECYCLE_LIVE_DATA_KTX)
+    implementation(Libs.LIFECYCLE_RUNTIME_KTX)
+    kapt(Libs.LIFECYCLE_COMPILER)
+
+    // Architecture Components
+    implementation(Libs.ROOM_KTX)
+    implementation(Libs.ROOM_RUNTIME)
+    kapt(Libs.ROOM_COMPILER)
+
     // Utils
     api(Libs.TIMBER)
+
 }

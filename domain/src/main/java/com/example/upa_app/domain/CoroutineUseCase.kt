@@ -1,14 +1,14 @@
 package com.example.upa_app.domain
 
-import android.os.AsyncTask.execute
+import com.example.upa_app.shared.result.Result
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 
 /**
  * Executes business logic synchronously or asynchronously using Coroutines.
  */
 abstract class UseCase<in P, R>(private val coroutineDispatcher: CoroutineDispatcher) {
-
     /** Executes the use case asynchronously and returns a [Result].
      *
      * @return a [Result].
@@ -22,9 +22,18 @@ abstract class UseCase<in P, R>(private val coroutineDispatcher: CoroutineDispat
             // In tests, this becomes a TestCoroutineDispatcher
             withContext(coroutineDispatcher) {
                 execute(parameters).let {
-                    Result.Su
+                    Result.Success(it)
                 }
             }
+        } catch (e: Exception) {
+            Timber.d(e)
+            Result.Error(e)
         }
     }
+
+    /**
+     * Override this to set the code to be executed.
+     */
+    @Throws(RuntimeException::class)
+    protected abstract suspend fun execute(parameters: P): R
 }

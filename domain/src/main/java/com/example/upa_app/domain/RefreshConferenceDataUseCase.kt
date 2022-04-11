@@ -1,4 +1,12 @@
 package com.example.upa_app.domain
 
-class RefreshConferenceDataUseCase {
+import javax.inject.Inject
+
+/**
+ * Forces a refresh in the conference data repository.
+ */
+open class RefreshConferenceDataUseCase @Inject constructor(
+//    private val repository: ConferenceDataRepository,
+
+) {
 }
