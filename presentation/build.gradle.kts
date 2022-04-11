@@ -3,7 +3,7 @@ plugins {
     kotlin("android")
     kotlin("kapt")
     id("androidx.navigation.safeargs.kotlin")
-//    id("dagger.hilt.android.plugin")
+    id("dagger.hilt.android.plugin")
 }
 
 
@@ -45,41 +45,46 @@ dependencies {
     api(platform(project(":depconstraints")))
     kapt(platform(project(":depconstraints")))
     androidTestApi(platform(project(":depconstraints")))
-//
-//    implementation(Libs.APP_STARTUP)
-//
-//    implementation(Libs.ACTIVITY_KTX)
-//    implementation(Libs.APPCOMPAT)
-//    implementation(Libs.FRAGMENT_KTX)
-//    implementation(Libs.CARDVIEW)
-//    implementation(Libs.BROWSER)
-//    implementation(Libs.CONSTRAINT_LAYOUT)
-//    implementation(Libs.DRAWER_LAYOUT)
-//    implementation(Libs.MATERIAL)
-//    implementation(Libs.FLEXBOX)
-//
-//
-//    // Architecture Components
-//    implementation(Libs.LIFECYCLE_LIVE_DATA_KTX)
-//    implementation(Libs.LIFECYCLE_RUNTIME_KTX)
-//    kapt(Libs.LIFECYCLE_COMPILER)
-//    implementation(Libs.NAVIGATION_FRAGMENT_KTX)
-//    implementation(Libs.NAVIGATION_UI_KTX)
-//
-//    // Architecture Components
-//    implementation(Libs.ROOM_KTX)
-//    implementation(Libs.ROOM_RUNTIME)
-//    kapt(Libs.ROOM_COMPILER)
-//
-//    // Dagger Hilt
-//    implementation(Libs.HILT_ANDROID)
-//    androidTestImplementation(Libs.HILT_TESTING)
-//    kapt(Libs.HILT_COMPILER)
-//    kaptAndroidTest(Libs.HILT_COMPILER)
-//
-//    // Glide
-//    implementation(Libs.GLIDE)
-//    kapt(Libs.GLIDE_COMPILER)
+
+    implementation(project(":shared"))
+    implementation(project(":model"))
+    implementation(project(":domain"))
+    implementation(project(":data"))
+
+    implementation(Libs.APP_STARTUP)
+
+    implementation(Libs.ACTIVITY_KTX)
+    implementation(Libs.APPCOMPAT)
+    implementation(Libs.FRAGMENT_KTX)
+    implementation(Libs.CARDVIEW)
+    implementation(Libs.BROWSER)
+    implementation(Libs.CONSTRAINT_LAYOUT)
+    implementation(Libs.DRAWER_LAYOUT)
+    implementation(Libs.MATERIAL)
+    implementation(Libs.FLEXBOX)
+
+
+    // Architecture Components
+    implementation(Libs.LIFECYCLE_LIVE_DATA_KTX)
+    implementation(Libs.LIFECYCLE_RUNTIME_KTX)
+    kapt(Libs.LIFECYCLE_COMPILER)
+    implementation(Libs.NAVIGATION_FRAGMENT_KTX)
+    implementation(Libs.NAVIGATION_UI_KTX)
+
+    // Architecture Components
+    implementation(Libs.ROOM_KTX)
+    implementation(Libs.ROOM_RUNTIME)
+    kapt(Libs.ROOM_COMPILER)
+
+    // Dagger Hilt
+    implementation(Libs.HILT_ANDROID)
+    androidTestImplementation(Libs.HILT_TESTING)
+    kapt(Libs.HILT_COMPILER)
+    kaptAndroidTest(Libs.HILT_COMPILER)
+
+    // Glide
+    implementation(Libs.GLIDE)
+    kapt(Libs.GLIDE_COMPILER)
 
 
     testImplementation("junit:junit:4.+")
