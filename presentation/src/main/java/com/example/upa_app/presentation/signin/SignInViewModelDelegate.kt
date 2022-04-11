@@ -3,6 +3,7 @@ package com.example.upa_app.presentation.signin
 import android.net.Uri
 import com.example.upa_app.data.signin.AuthenticatedUserInfo
 import com.example.upa_app.domain.auth.ObserveUserAuthStateUseCase
+import com.example.upa_app.domain.pref.NotificationsPrefIsShownUseCase
 import com.example.upa_app.presentation.signin.SignInNavigationAction.RequestSignIn
 import com.example.upa_app.presentation.signin.SignInNavigationAction.RequestSignOut
 import com.example.upa_app.presentation.util.WhileViewSubscribed

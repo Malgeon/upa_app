@@ -42,6 +42,8 @@ dependencies {
     androidTestApi(platform(project(":depconstraints")))
 
     implementation(project(":presentation"))
+    implementation(project(":data"))
+    implementation(project(":domain"))
     implementation(project(":shared"))
 
     implementation(Libs.APP_STARTUP)
