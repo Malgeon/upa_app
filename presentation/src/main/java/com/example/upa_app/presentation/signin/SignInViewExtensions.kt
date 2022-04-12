@@ -15,8 +15,11 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
+import com.example.upa_app.data.signin.AuthenticatedUserInfo
 import com.example.upa_app.presentation.MainActivityViewModel
 import com.example.upa_app.presentation.R
+import com.example.upa_app.presentation.util.asGlideTarget
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 fun Toolbar.setupProfileMenuItem(
