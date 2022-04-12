@@ -28,6 +28,7 @@ dependencies {
     kapt(platform(project(":depconstraints")))
     androidTestApi(platform(project(":depconstraints")))
 
+    implementation(project(":model"))
     implementation(project(":shared"))
 
     // Architecture Components

@@ -2,7 +2,7 @@ plugins {
     id("com.android.library")
     kotlin("android")
     kotlin("kapt")
-//    id("dagger.hilt.android.plugin")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -37,7 +37,6 @@ dependencies {
     implementation(project(":model"))
     implementation(project(":data"))
 
-
     // Coroutines
     api(Libs.COROUTINES)
 
@@ -59,5 +58,4 @@ dependencies {
 
     // Utils
     api(Libs.TIMBER)
-
 }
