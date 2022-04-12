@@ -36,7 +36,7 @@ enum class SignInNavigationAction {
  * Example usage
  *
  * ```
- * class MyViewModel @Injecty constructor(
+ * class MyViewModel @Inject constructor(
  *     signInViewModelComponent: SignInViewModelDelegate
  * ) : ViewModel(), SignInViewModelDelegate by signInViewModelComponent {
  * ```
