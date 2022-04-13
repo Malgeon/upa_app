@@ -35,6 +35,7 @@ fun Toolbar.setupProfileMenuItem(
     lifecycleOwner.lifecycleScope.launch {
         lifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
             viewModel.userInfo.collect {
+                Timber.e("test")
                 setProfileContentDescription(profileItem, resources, it)
             }
         }
