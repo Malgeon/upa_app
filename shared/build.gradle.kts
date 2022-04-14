@@ -2,7 +2,7 @@ plugins {
     id("com.android.library")
     kotlin("android")
     kotlin("kapt")
-//    id("dagger.hilt.android.plugin")
+    id("dagger.hilt.android.plugin")
 }
 
 
@@ -35,7 +35,10 @@ android {
 dependencies {
     api(platform(project(":depconstraints")))
     kapt(platform(project(":depconstraints")))
-    api(project(":model"))
+    androidTestApi(platform(project(":depconstraints")))
+
+    implementation(project(":model"))
+
 
     // AppCompat
     implementation(Libs.APPCOMPAT)

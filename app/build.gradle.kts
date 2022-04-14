@@ -1,3 +1,5 @@
+import kotlin.reflect.full.memberFunctions
+
 plugins {
     id("com.android.application")
     kotlin("android")
