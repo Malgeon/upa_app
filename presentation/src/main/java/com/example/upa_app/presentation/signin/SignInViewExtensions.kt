@@ -21,6 +21,7 @@ import com.example.upa_app.presentation.R
 import com.example.upa_app.presentation.util.asGlideTarget
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 fun Toolbar.setupProfileMenuItem(
     viewModel: MainActivityViewModel,
