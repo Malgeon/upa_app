@@ -3,7 +3,13 @@ package com.example.upa_app.domain.signin
 import android.content.ContentResolver
 import android.content.Context
 import android.net.Uri
+import com.example.upa_app.data.signin.AuthenticatedUserInfo
+import com.example.upa_app.data.signin.AuthenticatedUserInfoBasic
 import com.example.upa_app.data.signin.datasources.AuthStateUserDataSource
+import com.example.upa_app.data.signin.datasources.RegisteredUserDataSource
+import com.example.upa_app.shared.R
+import com.example.upa_app.shared.result.Result
+import com.example.upa_app.shared.result.Result.Success
 import com.google.firebase.auth.UserInfo
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
