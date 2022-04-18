@@ -1,5 +1,27 @@
 package com.example.upa_app.model.userdata
 
+import com.example.upa_app.model.SessionId
+import com.example.upa_app.model.reservations.ReservationRequest
+import com.example.upa_app.model.reservations.ReservationRequest.ReservationRequestEntityAction.CANCEL_REQUESTED
+import com.example.upa_app.model.reservations.ReservationRequest.ReservationRequestEntityAction.RESERVE_REQUESTED
+import com.example.upa_app.model.reservations.ReservationRequestResult
+import com.example.upa_app.model.reservations.ReservationRequestResult.ReservationRequestStatus.CANCEL_DENIED_CUTOFF
+import com.example.upa_app.model.reservations.ReservationRequestResult.ReservationRequestStatus.CANCEL_DENIED_UNKNOWN
+import com.example.upa_app.model.reservations.ReservationRequestResult.ReservationRequestStatus.CANCEL_SUCCEEDED
+import com.example.upa_app.model.reservations.ReservationRequestResult.ReservationRequestStatus.RESERVE_DENIED_CLASH
+import com.example.upa_app.model.reservations.ReservationRequestResult.ReservationRequestStatus.RESERVE_DENIED_CUTOFF
+import com.example.upa_app.model.reservations.ReservationRequestResult.ReservationRequestStatus.RESERVE_DENIED_UNKNOWN
+import com.example.upa_app.model.reservations.ReservationRequestResult.ReservationRequestStatus.RESERVE_SUCCEEDED
+import com.example.upa_app.model.reservations.ReservationRequestResult.ReservationRequestStatus.RESERVE_WAITLISTED
+import com.example.upa_app.model.reservations.ReservationRequestResult.ReservationRequestStatus.SWAP_DENIED_CLASH
+import com.example.upa_app.model.reservations.ReservationRequestResult.ReservationRequestStatus.SWAP_DENIED_CUTOFF
+import com.example.upa_app.model.reservations.ReservationRequestResult.ReservationRequestStatus.SWAP_DENIED_UNKNOWN
+import com.example.upa_app.model.reservations.ReservationRequestResult.ReservationRequestStatus.SWAP_SUCCEEDED
+import com.example.upa_app.model.reservations.ReservationRequestResult.ReservationRequestStatus.SWAP_WAITLISTED
+
+/**
+ * Data for a user's personalized event stored in a Firestore document.
+ */
 data class UserEvent(
     /**
      * The unique ID for the event.
