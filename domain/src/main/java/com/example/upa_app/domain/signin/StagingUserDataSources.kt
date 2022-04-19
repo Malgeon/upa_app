@@ -85,7 +85,7 @@ class StagingAuthStateUserDataSource(
     val isRegistered: Boolean,
     val userId: String?,
     val context: Context,
-    val notificationAlarmUpdater: NotificationAlarmUpdater
+//    val notificationAlarmUpdater: NotificationAlarmUpdater
 ) : AuthStateUserDataSource {
 
     private val userInfo = MutableStateFlow(
@@ -100,7 +100,7 @@ class StagingAuthStateUserDataSource(
 
     override fun getBasicUserInfo(): Flow<Result<AuthenticatedUserInfoBasic?>> {
         userId?.let {
-            notificationAlarmUpdater.updateAll(userId)
+//            notificationAlarmUpdater.updateAll(userId)
         }
 
         return userInfo
