@@ -11,5 +11,4 @@
         android:label="@string/title_schedule"
         tools:layout="@layout/fragment_photo">
     </fragment>
-
 </navigation>
