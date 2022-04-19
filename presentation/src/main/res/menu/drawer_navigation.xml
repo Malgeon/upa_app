@@ -29,7 +29,7 @@
             app:contentDescription="@string/title_home" />
 
         <item
-            android:id="@id/navigation_schedule"
+            android:id="@id/navigation_photo"
             android:icon="@drawable/ic_nav_schedule"
             android:title="@string/title_schedule"
             app:contentDescription="@string/title_schedule" />

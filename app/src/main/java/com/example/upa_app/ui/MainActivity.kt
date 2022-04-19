@@ -8,11 +8,7 @@ import androidx.navigation.fragment.NavHostFragment
 import com.example.upa_app.R
 import com.example.upa_app.databinding.ActivityMainBinding
 import com.example.upa_app.presentation.MainActivityViewModel
-import com.example.upa_app.shared.di.CodelabsEnabledFlag
-import com.example.upa_app.shared.di.ExploreArEnabledFlag
-import com.example.upa_app.shared.di.MapFeatureEnabledFlag
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -27,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         private val TOP_LEVEL_DESTINATIONS = setOf(
             com.example.upa_app.presentation.R.id.navigation_feed,
-            com.example.upa_app.presentation.R.id.navigation_schedule,
+            com.example.upa_app.presentation.R.id.navigation_photo,
             com.example.upa_app.presentation.R.id.navigation_map,
             com.example.upa_app.presentation.R.id.navigation_info,
             com.example.upa_app.presentation.R.id.navigation_agenda,

@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/navigation_schedule">
+    app:startDestination="@id/navigation_photo">
 
     <fragment
-        android:id="@+id/navigation_schedule"
-        android:name="com.example.upa_app.presentation.schedule.ScheduleTwoPaneFragment"
+        android:id="@+id/navigation_photo"
+        android:name="com.example.upa_app.presentation.randomphoto.PhotoTwoPaneFragment"
         android:label="@string/title_schedule"
-        tools:layout="@layout/fragment_schedule_two_pane" />
+        tools:layout="@layout/fragment_photo_two_pane" />
 
 </navigation>
