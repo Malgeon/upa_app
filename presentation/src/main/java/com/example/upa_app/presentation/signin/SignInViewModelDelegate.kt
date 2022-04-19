@@ -94,10 +94,10 @@ interface SignInViewModelDelegate {
  */
 internal class FirebaseSignInViewModelDelegate @Inject constructor(
     observeUserAuthStateUseCase: ObserveUserAuthStateUseCase,
-    private val notificationsPrefIsShownUseCase: NotificationsPrefIsShownUseCase,
+//    private val notificationsPrefIsShownUseCase: NotificationsPrefIsShownUseCase,
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher,
     @MainDispatcher private val mainDispatcher: CoroutineDispatcher,
-    @ReservationEnabledFlag val isReservationEnabledByRemoteConfig: Boolean,
+//    @ReservationEnabledFlag val isReservationEnabledByRemoteConfig: Boolean,
     @ApplicationScope val applicationScope: CoroutineScope
 ) : SignInViewModelDelegate {
 
@@ -133,22 +133,22 @@ internal class FirebaseSignInViewModelDelegate @Inject constructor(
     init {
         applicationScope.launch {
             userInfo.collect {
-                if (notificationsPrefIsShownUseCase(Unit).data == false && isUserSignedInValue) {
-                    _signInNavigationActions.tryOffer(SignInNavigationAction.ShowNotificationPreferencesDialog)
-                }
+//                if (notificationsPrefIsShownUseCase(Unit).data == false && isUserSignedInValue) {
+//                    _signInNavigationActions.tryOffer(SignInNavigationAction.ShowNotificationPreferencesDialog)
+//                }
             }
         }
     }
 
     override val showReservations: StateFlow<Boolean> = userInfo.map {
-        (isUserRegisteredValue || !isUserSignedInValue) &&
-                isReservationEnabledByRemoteConfig
+        (isUserRegisteredValue || !isUserSignedInValue)
+//                && isReservationEnabledByRemoteConfig
     }.stateIn(applicationScope, WhileViewSubscribed, false)
 
     override suspend fun emitSignInRequest(): Unit = withContext(ioDispatcher) {
         // Refresh the notificationsPrefIsShown because it's used to indicate if the
         // notifications preference dialog should be shown
-        notificationsPrefIsShownUseCase(Unit)
+//        notificationsPrefIsShownUseCase(Unit)
         _signInNavigationActions.tryOffer(RequestSignIn)
     }
 

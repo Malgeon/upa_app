@@ -30,14 +30,14 @@ internal class SignInModule {
     @Provides
     fun provideAuthStateUserDataSource(
         @ApplicationContext context: Context,
-        notificationAlarmUpdater: NotificationAlarmUpdater
+//        notificationAlarmUpdater: NotificationAlarmUpdater
     ): AuthStateUserDataSource {
         return StagingAuthStateUserDataSource(
             isRegistered = true,
             isSignedIn = true,
             context = context,
             userId = "StagingTest",
-            notificationAlarmUpdater = notificationAlarmUpdater
+//            notificationAlarmUpdater = notificationAlarmUpdater
         )
     }
 

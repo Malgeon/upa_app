@@ -38,20 +38,20 @@ class MainActivity : AppCompatActivity() {
 
 
     private val test = com.google.android.material.R.styleable.BottomSheetBehavior_Layout
-    @Inject
-    @JvmField
-    @MapFeatureEnabledFlag
-    var mapFeatureEnabled: Boolean = false
-
-    @Inject
-    @JvmField
-    @CodelabsEnabledFlag
-    var codelabsFeatureEnabled: Boolean = false
-
-    @Inject
-    @JvmField
-    @ExploreArEnabledFlag
-    var exploreArFeatureEnabled: Boolean = false
+//    @Inject
+//    @JvmField
+//    @MapFeatureEnabledFlag
+//    var mapFeatureEnabled: Boolean = false
+//
+//    @Inject
+//    @JvmField
+//    @CodelabsEnabledFlag
+//    var codelabsFeatureEnabled: Boolean = false
+//
+//    @Inject
+//    @JvmField
+//    @ExploreArEnabledFlag
+//    var exploreArFeatureEnabled: Boolean = false
 
     private val viewModel: MainActivityViewModel by viewModels()
     private lateinit var binding: ActivityMainBinding
