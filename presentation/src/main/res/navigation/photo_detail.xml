@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/photo_detail">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/photo_detail_nav_graph"
+    app:startDestination="@id/navigation_placeholder">
+
+    <!-- This is a global action since we can go to a session's detail regardless of the current
+         destination. Use popUpTo and popUpToInclusive to avoid creating stacks of session details
+         (e.g. by the user tapping on related sessions, or tapping a speaker and then tapping one of
+         their other sessions).
+    -->
+
+    <!-- Use an empty start destination until we can load and show the first session detail. -->
+    <fragment
+        android:id="@+id/navigation_placeholder"
+        android:name="androidx.fragment.app.Fragment" />
 
 </navigation>
