@@ -3,6 +3,8 @@ package com.example.upa_app.domain.userevent
 import androidx.annotation.WorkerThread
 import com.example.upa_app.data.pref.UserEventMessage
 import com.example.upa_app.domain.sessions.LoadUserSessionUseCaseResult
+import com.example.upa_app.domain.users.ReservationRequestAction
+import com.example.upa_app.domain.users.SwapRequestAction
 import com.example.upa_app.model.ConferenceDay
 import com.example.upa_app.shared.result.Result
 import com.example.upa_app.model.Session
