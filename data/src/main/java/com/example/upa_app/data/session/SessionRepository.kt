@@ -1,5 +1,6 @@
 package com.example.upa_app.data.session
 
+import com.example.upa_app.data.ConferenceDataRepository
 import com.example.upa_app.model.ConferenceDay
 import com.example.upa_app.model.Session
 import com.example.upa_app.model.SessionId
