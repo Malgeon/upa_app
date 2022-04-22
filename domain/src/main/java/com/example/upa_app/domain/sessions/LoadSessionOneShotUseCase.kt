@@ -1,5 +1,6 @@
 package com.example.upa_app.domain.sessions
 
+import com.example.upa_app.data.session.SessionRepository
 import com.example.upa_app.domain.UseCase
 import com.example.upa_app.model.Session
 import com.example.upa_app.model.SessionId

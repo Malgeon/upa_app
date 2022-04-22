@@ -1,20 +1,19 @@
-package com.example.upa_app.domain.pref
+package com.example.upa_app.domain.prefs
 
 import com.example.upa_app.data.pref.PreferenceStorage
 import com.example.upa_app.domain.UseCase
 import com.example.upa_app.shared.di.IoDispatcher
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 
 /**
- * Returns whether the notifications preference has been shown to the user.
+ * Returns whether the schedule UI hints have been shown.
  */
-open class NotificationsPrefIsShownUseCase @Inject constructor(
+class ScheduleUiHintsShownUseCase @Inject constructor(
     private val preferenceStorage: PreferenceStorage,
     @IoDispatcher dispatcher: CoroutineDispatcher
 ) : UseCase<Unit, Boolean>(dispatcher) {
-    // TODO use as flow
     override suspend fun execute(parameters: Unit): Boolean =
-        preferenceStorage.notificationsPreferenceShown.first()
+        preferenceStorage.areScheduleUiHintsShown()
+
 }

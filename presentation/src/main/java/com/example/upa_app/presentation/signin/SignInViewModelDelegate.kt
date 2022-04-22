@@ -3,14 +3,12 @@ package com.example.upa_app.presentation.signin
 import android.net.Uri
 import com.example.upa_app.data.signin.AuthenticatedUserInfo
 import com.example.upa_app.domain.auth.ObserveUserAuthStateUseCase
-import com.example.upa_app.domain.pref.NotificationsPrefIsShownUseCase
 import com.example.upa_app.presentation.signin.SignInNavigationAction.RequestSignIn
 import com.example.upa_app.presentation.signin.SignInNavigationAction.RequestSignOut
 import com.example.upa_app.presentation.util.WhileViewSubscribed
 import com.example.upa_app.shared.di.ApplicationScope
 import com.example.upa_app.shared.di.IoDispatcher
 import com.example.upa_app.shared.di.MainDispatcher
-import com.example.upa_app.shared.di.ReservationEnabledFlag
 import com.example.upa_app.shared.result.Result
 import com.example.upa_app.shared.result.data
 import com.example.upa_app.shared.util.tryOffer

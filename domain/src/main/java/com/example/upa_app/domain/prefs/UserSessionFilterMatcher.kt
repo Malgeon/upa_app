@@ -1,4 +1,4 @@
-package com.example.upa_app.domain.pref
+package com.example.upa_app.domain.prefs
 
 import com.example.upa_app.model.filters.Filter
 import com.example.upa_app.model.filters.Filter.MyScheduleFilter

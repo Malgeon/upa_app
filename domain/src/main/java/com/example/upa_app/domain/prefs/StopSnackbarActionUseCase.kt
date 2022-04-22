@@ -1,4 +1,4 @@
-package com.example.upa_app.domain.pref
+package com.example.upa_app.domain.prefs
 
 import com.example.upa_app.data.pref.PreferenceStorage
 import com.example.upa_app.domain.UseCase

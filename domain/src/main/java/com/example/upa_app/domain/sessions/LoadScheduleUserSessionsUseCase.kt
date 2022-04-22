@@ -2,6 +2,7 @@ package com.example.upa_app.domain.sessions
 
 import com.example.upa_app.data.pref.UserEventMessage
 import com.example.upa_app.domain.FlowUseCase
+import com.example.upa_app.domain.userevent.DefaultSessionAndUserEventRepository
 import com.example.upa_app.model.Session
 import com.example.upa_app.model.userdata.UserSession
 import com.example.upa_app.shared.di.IoDispatcher

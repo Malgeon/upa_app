@@ -1,10 +1,14 @@
 package com.example.upa_app.domain.sessions
 
+import com.example.upa_app.domain.component.notifications.SessionAlarmManager
 import com.example.upa_app.domain.userevent.ObservableUserEvents
 import com.example.upa_app.domain.userevent.SessionAndUserEventRepository
 import com.example.upa_app.model.userdata.UserSession
 import com.example.upa_app.shared.di.ApplicationScope
+import com.example.upa_app.shared.result.Result
+import com.example.upa_app.shared.result.data
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
