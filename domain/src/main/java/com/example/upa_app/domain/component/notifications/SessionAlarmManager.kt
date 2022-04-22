@@ -5,7 +5,10 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import androidx.core.app.AlarmManagerCompat
+import com.example.upa_app.model.Session
+import com.example.upa_app.model.SessionId
 import com.example.upa_app.model.userdata.UserSession
+import com.example.upa_app.shared.util.toEpochMilli
 import dagger.hilt.android.qualifiers.ApplicationContext
 import org.threeten.bp.Instant
 import org.threeten.bp.temporal.ChronoUnit
