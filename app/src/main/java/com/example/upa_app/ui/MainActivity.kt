@@ -6,9 +6,11 @@ import android.view.Menu
 import androidx.activity.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.example.upa_app.R
 import com.example.upa_app.databinding.ActivityMainBinding
 import com.example.upa_app.presentation.MainActivityViewModel
+import com.example.upa_app.presentation.setupWithNavController
 import com.example.upa_app.presentation.util.HeightTopWindowInsetsListener
 import com.example.upa_app.shared.di.CodelabsEnabledFlag
 import com.example.upa_app.shared.di.ExploreArEnabledFlag

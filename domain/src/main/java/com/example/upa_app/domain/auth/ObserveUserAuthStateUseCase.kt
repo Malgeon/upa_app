@@ -10,6 +10,7 @@ import com.example.upa_app.domain.fcm.TopicSubscriber
 import com.example.upa_app.shared.di.ApplicationScope
 import com.example.upa_app.shared.di.IoDispatcher
 import com.example.upa_app.shared.result.Result
+import com.example.upa_app.shared.result.Result.Error
 import com.example.upa_app.shared.result.Result.Success
 import com.example.upa_app.shared.result.data
 import com.example.upa_app.shared.util.cancelIfActive
@@ -58,7 +59,7 @@ open class ObserveUserAuthStateUseCase @Inject constructor(
                     send(Success(FirebaseRegisteredUserInfo(null, false)))
                 }
             } else {
-                send(Result.Error(Exception("FirebaseAuth error")))
+                send(Error(Exception("FirebaseAuth error")))
             }
         }
 
@@ -67,9 +68,7 @@ open class ObserveUserAuthStateUseCase @Inject constructor(
     }
         .shareIn(externalScope, SharingStarted.WhileSubscribed())
 
-    override fun execute(parameters: Any): Flow<Result<AuthenticatedUserInfo>> {
-        TODO("Not yet implemented")
-    }
+    override fun execute(parameters: Any): Flow<Result<AuthenticatedUserInfo>> = authStateChanges
 
     private fun subscribeToRegisteredTopic() {
         topicSubscriber.subscribeToScheduleUpdates()

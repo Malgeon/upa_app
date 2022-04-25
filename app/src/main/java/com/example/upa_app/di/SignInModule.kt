@@ -4,6 +4,7 @@ import android.content.Context
 import com.example.upa_app.data.signin.datasources.AuthIdDataSource
 import com.example.upa_app.data.signin.datasources.AuthStateUserDataSource
 import com.example.upa_app.data.signin.datasources.RegisteredUserDataSource
+import com.example.upa_app.domain.sessions.NotificationAlarmUpdater
 import com.example.upa_app.domain.signin.StagingAuthStateUserDataSource
 import com.example.upa_app.domain.signin.StagingRegisteredUserDataSource
 import dagger.Module
@@ -30,7 +31,7 @@ internal class SignInModule {
     @Provides
     fun provideAuthStateUserDataSource(
         @ApplicationContext context: Context,
-//        notificationAlarmUpdater: NotificationAlarmUpdater
+        notificationAlarmUpdater: NotificationAlarmUpdater
     ): AuthStateUserDataSource {
         return StagingAuthStateUserDataSource(
             isRegistered = true,
