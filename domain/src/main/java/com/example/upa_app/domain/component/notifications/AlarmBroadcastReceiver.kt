@@ -4,12 +4,17 @@ import android.app.*
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.Intent.ACTION_VIEW
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.annotation.WorkerThread
 import androidx.core.app.NotificationCompat
+import androidx.core.content.getSystemService
+import androidx.core.net.toUri
 import com.example.upa_app.data.pref.PreferenceStorage
 import com.example.upa_app.data.signin.datasources.AuthIdDataSource
+import com.example.upa_app.domain.sessions.LoadSessionOneShotUseCase
+import com.example.upa_app.domain.sessions.LoadUserSessionOneShotUseCase
 import com.example.upa_app.model.Session
 import com.example.upa_app.model.userdata.UserSession
 import com.example.upa_app.shared.di.ApplicationScope
@@ -20,6 +25,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.flow.first
 import org.threeten.bp.Instant
 import timber.log.Timber
 import java.util.concurrent.TimeUnit

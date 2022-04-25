@@ -1,10 +1,14 @@
 package com.example.upa_app.domain.component.notifications
 
 import android.app.AlarmManager
+import android.app.AlarmManager.RTC
+import android.app.AlarmManager.RTC_WAKEUP
 import android.app.PendingIntent
+import android.app.PendingIntent.FLAG_UPDATE_CURRENT
 import android.content.Context
 import android.content.Intent
 import androidx.core.app.AlarmManagerCompat
+import androidx.core.content.getSystemService
 import com.example.upa_app.model.Session
 import com.example.upa_app.model.SessionId
 import com.example.upa_app.model.userdata.UserSession
@@ -74,7 +78,7 @@ open class SessionAlarmManager @Inject constructor(@ApplicationContext val conte
                     AlarmBroadcastReceiver.EXTRA_NOTIFICATION_CHANNEL,
                     channel
                 ),
-            PendingIntent.FLAG_UPDATE_CURRENT
+            FLAG_UPDATE_CURRENT
         )
     }
 
@@ -111,7 +115,7 @@ open class SessionAlarmManager @Inject constructor(@ApplicationContext val conte
         systemAlarmManager?.let {
             AlarmManagerCompat.setExactAndAllowWhileIdle(
                 systemAlarmManager,
-                AlarmManager.RTC_WAKEUP,
+                RTC_WAKEUP,
                 triggerAtMillis,
                 pendingIntent
             )
@@ -132,7 +136,7 @@ open class SessionAlarmManager @Inject constructor(@ApplicationContext val conte
             val triggerAtMillis = Instant.now().plus(5, ChronoUnit.MINUTES).toEpochMilli()
             AlarmManagerCompat.setExactAndAllowWhileIdle(
                 systemAlarmManager,
-                AlarmManager.RTC,
+                RTC,
                 triggerAtMillis,
                 pendingIntent
             )

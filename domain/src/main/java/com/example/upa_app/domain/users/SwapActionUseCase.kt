@@ -4,6 +4,7 @@ import com.example.upa_app.domain.UseCase
 import com.example.upa_app.domain.userevent.SessionAndUserEventRepository
 import com.example.upa_app.model.SessionId
 import com.example.upa_app.shared.di.IoDispatcher
+import com.example.upa_app.shared.result.Result.Error
 import com.example.upa_app.shared.result.Result.Success
 import com.example.upa_app.shared.result.Result.Loading
 import kotlinx.coroutines.CoroutineDispatcher

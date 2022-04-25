@@ -1,6 +1,14 @@
 package com.example.upa_app.presentation.filters
 
 import android.graphics.Color
+import com.example.upa_app.model.filters.Filter
+import com.example.upa_app.model.filters.Filter.DateFilter
+import com.example.upa_app.model.filters.Filter.MyScheduleFilter
+import com.example.upa_app.model.filters.Filter.TagFilter
+import com.example.upa_app.model.Tag
+import com.example.upa_app.presentation.R
+import com.example.upa_app.shared.util.TimeUtils
+
 
 /** Wrapper model for showing [Filter] as a chip in the UI. */
 data class FilterChip(

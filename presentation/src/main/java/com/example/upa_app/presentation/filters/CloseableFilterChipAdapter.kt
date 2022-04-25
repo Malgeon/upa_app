@@ -4,7 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.example.upa_app.presentation.databinding.ItemFilterChipCloseableBinding
+import com.example.upa_app.presentation.filters.CloseableFilterChipAdapter.FilterChipViewHolder
+import com.example.upa_app.presentation.util.executeAfter
 
 // TODO(jdkoren): Maybe combine this with SelectableFilterChipAdapter
 /** Adapter for closeable filters, e.g. those above search results. */
@@ -28,7 +31,7 @@ class CloseableFilterChipAdapter(
 
     class FilterChipViewHolder(
         private val binding: ItemFilterChipCloseableBinding
-    ) : RecyclerView.ViewHolder(binding.root) {
+    ) : ViewHolder(binding.root) {
         fun bind(item: FilterChip) {
             binding.executeAfter {
                 filterChip = item
