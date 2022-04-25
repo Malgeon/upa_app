@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="filterChip"
+            type="com.example.upa_app.presentation.filters.FilterChip" />
+
+        <variable
+            name="viewModel"
+            type="com.example.upa_app.presentation.filters.FiltersViewModelDelegate" />
+    </data>
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/filter_label"
+        style="@style/Widget.IOSched.FilterChip.Closeable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        app:filterChipOnClose="@{filterChip}"
+        app:filterChipText="@{filterChip}"
+        app:filterChipTint="@{filterChip.color}"
+        app:viewModel="@{viewModel}"
+        tools:text="@sample/tags.json/tags/name"
+        tools:chipIconTint="@sample/tags.json/tags/color"/>
+</layout>

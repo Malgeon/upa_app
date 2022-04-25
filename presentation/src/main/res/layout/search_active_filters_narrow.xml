@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.upa_app.presentation.search.SearchViewModel" />
+    </data>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/active_filters"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:orientation="horizontal"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="@dimen/spacing_micro"
+        android:requiresFadingEdge="horizontal"
+        app:activeFilters="@{viewModel.selectedFilterChips}"
+        app:goneUnless="@{viewModel.hasAnyFilters}"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:viewModel="@{viewModel}"
+        tools:itemCount="3"
+        tools:listitem="@layout/item_filter_chip_closeable"
+        tools:visibility="visible" />
+</layout>
