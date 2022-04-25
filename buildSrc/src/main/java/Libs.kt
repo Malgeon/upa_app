@@ -62,6 +62,8 @@ object Libs {
     const val OKHTTP = "com.squareup.okhttp3:okhttp"
     const val OKHTTP_LOGGING_INTERCEPTOR = "com.squareup.okhttp3:logging-interceptor"
     const val OKIO = "com.squareup.okio:okio"
+    const val RETROFIT = "com.squareup.retrofit2:retrofit"
+    const val RETROFIT_CONVERTER_GSON = "com.squareup.retrofit2:converter-gson"
     const val ROOM_COMPILER = "androidx.room:room-compiler"
     const val ROOM_KTX = "androidx.room:room-ktx"
     const val ROOM_RUNTIME = "androidx.room:room-runtime"

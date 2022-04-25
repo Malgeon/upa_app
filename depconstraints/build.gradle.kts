@@ -48,6 +48,7 @@ val okhttp = "3.10.0"
 val okio = "1.14.0"
 val pageIndicator = "1.3.0"
 val playCore = "1.6.5"
+val retrofit = "2.9.0"
 val room = "2.4.0-alpha03"
 val rules = "1.1.1"
 val runner = "1.2.0"
@@ -116,6 +117,8 @@ dependencies {
         api("${Libs.MOCKITO_CORE}:$mockito")
         api("${Libs.NAVIGATION_FRAGMENT_KTX}:${Versions.NAVIGATION}")
         api("${Libs.NAVIGATION_UI_KTX}:${Versions.NAVIGATION}")
+        api("${Libs.RETROFIT}:$retrofit")
+        api("${Libs.RETROFIT_CONVERTER_GSON}:$retrofit")
         api("${Libs.ROOM_KTX}:$room")
         api("${Libs.ROOM_RUNTIME}:$room")
         api("${Libs.ROOM_COMPILER}:$room")

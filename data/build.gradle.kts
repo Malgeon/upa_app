@@ -48,6 +48,12 @@ dependencies {
     // DataStore
     implementation(Libs.DATA_STORE_PREFERENCES)
 
+    // okHttp
+    implementation(Libs.DATA_STORE_PREFERENCES)
+
+    // Retrofit
+    implementation(Libs.RETROFIT)
+
     // Kotlin
     implementation(Libs.KOTLIN_STDLIB)
 
