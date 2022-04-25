@@ -7,13 +7,17 @@ import androidx.core.view.doOnDetach
 import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.upa_app.presentation.R
+import com.example.upa_app.presentation.SectionHeader
+import com.example.upa_app.presentation.databinding.ItemFilterChipSelectableBinding
+import com.example.upa_app.presentation.databinding.ItemGenericSectionHeaderBinding
+import com.example.upa_app.shared.util.exceptionInDebug
 
 /** Adapter for selectable filters, e.g. ones shown in the filter sheet. */
 class SelectableFilterChipAdapter(
     private val viewModelDelegate: FiltersViewModelDelegate
-) : ListAdapter<Any, RecyclerView.ViewHolder>(FilterChipAndHeadingDiff) {
+) : ListAdapter<Any, ViewHolder>(FilterChipAndHeadingDiff) {
 
     companion object {
         private val VIEW_TYPE_HEADING = R.layout.fading_snackbar_layout
@@ -62,7 +66,7 @@ class SelectableFilterChipAdapter(
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return when (viewType) {
             VIEW_TYPE_HEADING -> createHeadingViewHolder(parent)
             VIEW_TYPE_FILTER -> createFilterViewHolder(parent)
@@ -87,7 +91,7 @@ class SelectableFilterChipAdapter(
         return FilterViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         when (holder) {
             is HeadingViewHolder -> holder.bind(getItem(position) as SectionHeader)
             is FilterViewHolder -> holder.bind(getItem(position) as FilterChip)
@@ -97,7 +101,7 @@ class SelectableFilterChipAdapter(
     /** ViewHolder for category heading items. */
     class HeadingViewHolder(
         private val binding: ItemGenericSectionHeaderBinding
-    ) : RecyclerView.ViewHolder(binding.root) {
+    ) : ViewHolder(binding.root) {
 
         internal fun bind(item: SectionHeader) {
             binding.sectionHeader = item
@@ -107,7 +111,7 @@ class SelectableFilterChipAdapter(
 
     /** ViewHolder for [FilterChip] items. */
     class FilterViewHolder(private val binding: ItemFilterChipSelectableBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+        ViewHolder(binding.root) {
 
         init {
             itemView.doOnAttach {

@@ -6,6 +6,8 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.upa_app.presentation.R
+import com.example.upa_app.presentation.widget.SpaceDecoration
 import com.google.android.material.chip.Chip
 
 @BindingAdapter("activeFilters", "viewModel", requireAll = true)

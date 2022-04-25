@@ -11,10 +11,15 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
+import com.example.upa_app.shared.BuildConfig
+import com.google.android.gms.tasks.Task
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.SendChannel
+import kotlinx.coroutines.suspendCancellableCoroutine
 import org.threeten.bp.ZonedDateTime
 import timber.log.Timber
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
 
 /** Convenience for callbacks/listeners whose return value indicates an event was consumed. */
 inline fun consume(f: () -> Unit): Boolean {
@@ -112,27 +117,27 @@ fun <E> SendChannel<E>.tryOffer(element: E): Boolean = try {
 // endregion
 
 // region Firebase
-//suspend fun <T> Task<T>.suspendAndWait(): T =
-//    suspendCancellableCoroutine { continuation ->
-//        addOnSuccessListener { result ->
-//            continuation.resume(result)
-//        }
-//        addOnFailureListener { exception ->
-//            continuation.resumeWithException(exception)
-//        }
-//        addOnCanceledListener {
-//            continuation.resumeWithException(Exception("Firebase Task was cancelled"))
-//        }
-//    }
+suspend fun <T> Task<T>.suspendAndWait(): T =
+    suspendCancellableCoroutine { continuation ->
+        addOnSuccessListener { result ->
+            continuation.resume(result)
+        }
+        addOnFailureListener { exception ->
+            continuation.resumeWithException(exception)
+        }
+        addOnCanceledListener {
+            continuation.resumeWithException(Exception("Firebase Task was cancelled"))
+        }
+    }
 // endregion
 
 /**
  * Helper to throw exceptions only in Debug builds, logging a warning otherwise.
  */
-//fun exceptionInDebug(t: Throwable) {
-//    if (BuildConfig.DEBUG) {
-//        throw t
-//    } else {
-//        Timber.e(t)
-//    }
-//}
+fun exceptionInDebug(t: Throwable) {
+    if (BuildConfig.DEBUG) {
+        throw t
+    } else {
+        Timber.e(t)
+    }
+}
