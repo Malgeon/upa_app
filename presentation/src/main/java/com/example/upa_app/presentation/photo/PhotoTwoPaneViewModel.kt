@@ -2,6 +2,8 @@ package com.example.upa_app.presentation.photo
 
 import androidx.lifecycle.ViewModel
 import com.example.upa_app.model.SessionId
+import com.example.upa_app.presentation.sessioncommon.OnSessionClickListener
+import com.example.upa_app.presentation.sessioncommon.OnSessionStarClickDelegate
 import com.example.upa_app.shared.util.tryOffer
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel

@@ -4,13 +4,34 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.upa_app.domain.RefreshConferenceDataUseCase
 import com.example.upa_app.domain.fcm.TopicSubscriber
+import com.example.upa_app.domain.prefs.ScheduleUiHintsShownUseCase
 import com.example.upa_app.domain.sessions.ConferenceDayIndexer
+import com.example.upa_app.domain.sessions.LoadScheduleUserSessionsParameters
+import com.example.upa_app.domain.sessions.LoadScheduleUserSessionsResult
+import com.example.upa_app.domain.sessions.LoadScheduleUserSessionsUseCase
+import com.example.upa_app.domain.sessions.ObserveConferenceDataUseCase
+import com.example.upa_app.domain.settings.GetTimeZoneUseCase
+import com.example.upa_app.model.ConferenceDay
+import com.example.upa_app.model.userdata.UserSession
+import com.example.upa_app.presentation.messages.SnackbarMessage
+import com.example.upa_app.presentation.messages.SnackbarMessageManager
+import com.example.upa_app.presentation.photo.PhotoNavigationAction.ShowScheduleUiHints
+import com.example.upa_app.presentation.sessioncommon.stringRes
 import com.example.upa_app.presentation.signin.SignInViewModelDelegate
+import com.example.upa_app.presentation.util.WhileViewSubscribed
+import com.example.upa_app.shared.result.Result
+import com.example.upa_app.shared.result.Result.Success
+import com.example.upa_app.shared.result.Result.Error
+import com.example.upa_app.shared.result.data
+import com.example.upa_app.shared.result.successOr
 import com.example.upa_app.shared.util.TimeUtils
+import com.example.upa_app.shared.util.tryOffer
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.channels.BufferOverflow
+import kotlinx.coroutines.channels.BufferOverflow.DROP_LATEST
+import kotlinx.coroutines.channels.BufferOverflow.DROP_OLDEST
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.SharingStarted.Companion.Lazily
 import kotlinx.coroutines.launch
 import org.threeten.bp.ZoneId
 import timber.log.Timber
@@ -123,12 +144,12 @@ class PhotoViewModel @Inject constructor(
 
     // SIDE EFFECTS: Error messages
     // Guard against too many error messages by limiting to 3, keeping the oldest.
-    private val _errorMessage = Channel<String>(1, BufferOverflow.DROP_LATEST)
+    private val _errorMessage = Channel<String>(1, DROP_LATEST)
     val errorMessage: Flow<String> =
         _errorMessage.receiveAsFlow().shareIn(viewModelScope, WhileViewSubscribed)
 
     // SIDE EFFECTS: Navigation actions
-    private val _navigationActions = Channel<ScheduleNavigationAction>(capacity = Channel.CONFLATED)
+    private val _navigationActions = Channel<PhotoNavigationAction>(capacity = Channel.CONFLATED)
 
     // Exposed with receiveAsFlow to make sure that only one observer receives updates.
     val navigationActions = _navigationActions.receiveAsFlow()
@@ -152,7 +173,7 @@ class PhotoViewModel @Inject constructor(
     // the values are not replayed.
     private val currentEventIndex = MutableSharedFlow<Int>(
         extraBufferCapacity = 1,
-        onBufferOverflow = BufferOverflow.DROP_OLDEST
+        onBufferOverflow = DROP_OLDEST
     )
 
     val scrollToEvent: SharedFlow<ScheduleScrollEvent> =

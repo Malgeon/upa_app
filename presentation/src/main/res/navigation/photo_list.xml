@@ -10,5 +10,13 @@
         android:name="com.example.upa_app.presentation.photo.PhotoFragment"
         android:label="@string/title_schedule"
         tools:layout="@layout/fragment_photo">
+        <action
+            android:id="@+id/to_search"
+            app:destination="@id/navigation_schedule_search" />
     </fragment>
+
+    <fragment
+        android:id="@+id/navigation_schedule_search"
+        android:name="com.example.upa_app.presentation.search.SearchFragment"
+        tools:layout="@layout/fragment_search" />
 </navigation>
