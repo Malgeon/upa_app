@@ -9,15 +9,15 @@
 
         <variable
             name="userSession"
-            type="" />
+            type="com.example.upa_app.model.userdata.UserSession" />
 
         <variable
             name="sessionClickListener"
-            type="" />
+            type="com.example.upa_app.presentation.sessioncommon.OnSessionClickListener" />
 
         <variable
             name="sessionStarClickListener"
-            type="" />
+            type="com.example.upa_app.presentation.sessioncommon.OnSessionStarClickListener" />
 
         <variable
             name="showReservations"

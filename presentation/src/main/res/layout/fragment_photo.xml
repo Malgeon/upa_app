@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="" />
+            type="com.example.upa_app.presentation.photo.PhotoViewModel" />
 
         <variable
             name="isEmpty"

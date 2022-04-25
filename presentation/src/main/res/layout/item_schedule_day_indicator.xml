@@ -8,11 +8,11 @@
 
         <variable
             name="indicator"
-            type="" />
+            type="com.example.upa_app.presentation.photo.DayIndicator" />
 
         <variable
             name="viewModel"
-            type="" />
+            type="com.example.upa_app.presentation.photo.PhotoViewModel" />
     </data>
 
     <CheckedTextView
