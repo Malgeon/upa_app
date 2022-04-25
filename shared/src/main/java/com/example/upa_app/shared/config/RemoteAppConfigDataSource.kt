@@ -1,6 +1,11 @@
 package com.example.upa_app.shared.config
 
 import android.content.res.Resources
+import com.example.upa_app.model.ConferenceWifiInfo
+import com.example.upa_app.shared.BuildConfig
+import com.example.upa_app.shared.di.IoDispatcher
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withContext

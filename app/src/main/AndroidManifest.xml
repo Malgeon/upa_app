@@ -27,6 +27,12 @@
             android:exported="false"
             tools:node="merge">
             <meta-data
+                android:name="com.example.upa_app.util.initializers.AndroidThreeTenInitializer"
+                android:value="androidx.startup" />
+            <meta-data
+                android:name="com.example.upa_app.util.initializers.StrictModeInitializer"
+                android:value="androidx.startup" />
+            <meta-data
                 android:name="com.example.upa_app.util.initializers.TimberInitializer"
                 android:value="androidx.startup" />
 

@@ -12,6 +12,22 @@ android {
 
         minSdk = Versions.MIN_SDK
         targetSdk = Versions.TARGET_SDK
+
+        buildConfigField("String", "CONFERENCE_TIMEZONE", project.properties["conference_timezone"] as String)
+        buildConfigField("String", "CONFERENCE_DAY1_START", project.properties["conference_day1_start"] as String)
+        buildConfigField("String", "CONFERENCE_DAY1_END", project.properties["conference_day1_end"] as String)
+        buildConfigField("String", "CONFERENCE_DAY2_START", project.properties["conference_day2_start"] as String)
+        buildConfigField("String", "CONFERENCE_DAY2_END", project.properties["conference_day2_end"] as String)
+        buildConfigField("String", "CONFERENCE_DAY3_START", project.properties["conference_day3_start"] as String)
+        buildConfigField("String", "CONFERENCE_DAY3_END", project.properties["conference_day3_end"] as String)
+
+        buildConfigField("String", "CONFERENCE_DAY1_AFTERHOURS_START", project.properties["conference_day1_afterhours_start"] as String)
+        buildConfigField("String", "CONFERENCE_DAY2_CONCERT_START", project.properties["conference_day2_concert_start"] as String)
+
+        buildConfigField(
+            "String",
+            "CONFERENCE_WIFI_OFFERING_START", project.properties["conference_wifi_offering_start"] as String
+        )
     }
 
     buildTypes {
@@ -39,39 +55,30 @@ dependencies {
 
     implementation(project(":model"))
 
-
-    // AppCompat
-    implementation(Libs.APPCOMPAT)
-
     // Architecture Components
     implementation(Libs.LIFECYCLE_LIVE_DATA_KTX)
-    implementation(Libs.LIFECYCLE_VIEW_MODEL_KTX)
-    implementation(Libs.ROOM_KTX)
-    implementation(Libs.ROOM_RUNTIME)
-    kapt(Libs.ROOM_COMPILER)
-    testImplementation(Libs.ARCH_TESTING)
-
-    // Utils
-    api(Libs.TIMBER)
-    implementation(Libs.GSON)
-    implementation(Libs.CORE_KTX)
-
-    // OkHttp
-    implementation(Libs.OKHTTP)
-    implementation(Libs.OKHTTP_LOGGING_INTERCEPTOR)
+    implementation(Libs.LIFECYCLE_RUNTIME_KTX)
+    kapt(Libs.LIFECYCLE_COMPILER)
 
     // Kotlin
     implementation(Libs.KOTLIN_STDLIB)
 
-    // Coroutines
-    api(Libs.COROUTINES)
-    testImplementation(Libs.COROUTINES_TEST)
-
     // Dagger Hilt
     implementation(Libs.HILT_ANDROID)
+    androidTestImplementation(Libs.HILT_TESTING)
     kapt(Libs.HILT_COMPILER)
+    kaptAndroidTest(Libs.HILT_COMPILER)
 
-    // DataStore
-    implementation(Libs.DATA_STORE_PREFERENCES)
+    // Utils
+    api(Libs.TIMBER)
+
+    // Firebase
+    api(Libs.FIREBASE_CONFIG)
+    api(Libs.FIREBASE_ANALYTICS)
+
+
+    testImplementation("junit:junit:4.+")
+    androidTestImplementation("androidx.test.ext:junit:1.1.3")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
 
 }
