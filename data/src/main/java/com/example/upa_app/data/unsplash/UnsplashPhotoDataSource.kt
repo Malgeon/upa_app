@@ -1,4 +1,8 @@
 package com.example.upa_app.data.unsplash
 
-class UnsplashPhotoDataSource {
+import com.example.upa_app.model.unsplash.UnsplashPhotoData
+
+interface UnsplashPhotoDataSource {
+    fun getRemotePhotoData(): UnsplashPhotoData?
 }
+
