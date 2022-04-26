@@ -54,12 +54,6 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun provideAppDatabase(@ApplicationContext context: Context): AppDatabase {
-        return AppDatabase.buildDatabase(context)
-    }
-
-    @Singleton
-    @Provides
     fun provideGson(): Gson {
         return GsonBuilder().create()
     }

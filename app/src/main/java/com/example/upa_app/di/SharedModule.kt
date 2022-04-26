@@ -1,4 +1,4 @@
-package com.example.upa_app.presentation.di
+package com.example.upa_app.di
 
 import com.example.upa_app.data.ConferenceDataRepository
 import com.example.upa_app.data.ConferenceDataSource

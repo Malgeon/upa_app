@@ -1,5 +1,7 @@
 package com.example.upa_app.data.api
 
+import com.example.upa_app.model.unsplash.UnsplashPhoto
+import com.example.upa_app.model.unsplash.UnsplashSearchResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
