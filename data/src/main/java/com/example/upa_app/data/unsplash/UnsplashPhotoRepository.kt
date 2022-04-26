@@ -58,6 +58,12 @@ class UnsplashPhotoRepository @Inject constructor(
     }
 
     fun getOfflinePhotoData(): UnsplashPhotoData {
+        synchronized(loadPhotoDataLock) {
+            val offlineData = unsplashPhotoDataCache ?: getCacheOrLocalDataAndPopulatePhoto()
+        }
+    }
+
+    private fun getCacheOrLocalDataAndPopulatePhoto(): UnsplashPhotoData {
 
     }
 
