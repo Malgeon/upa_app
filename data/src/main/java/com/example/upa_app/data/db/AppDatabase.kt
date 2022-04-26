@@ -23,7 +23,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun codelabFtsDao(): CodelabFtsDao
 
     companion object {
-        private const val databaseName = "schedule-db"
+        private const val databaseName = "upa-db"
 
         fun buildDatabase(context: Context): AppDatabase {
             // Since Room is only used for FTS, destructive migration is enough because the tables

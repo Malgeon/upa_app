@@ -1,7 +1,12 @@
 package com.example.upa_app.data.db
 
 import androidx.room.Entity
+import com.example.upa_app.model.unsplash.UnsplashPhotoUrls
+import com.example.upa_app.model.unsplash.UnsplashUser
 
 @Entity(tableName = "unsplash")
-class UnsplashEntity {
-}
+data class UnsplashEntity (
+    val id: String,
+    val urls: UnsplashPhotoUrls,
+    val user: UnsplashUser
+)

@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.RecycledViewPool
 import com.example.upa_app.domain.sessions.ConferenceDayIndexer
 import com.example.upa_app.model.ConferenceDay
 import com.example.upa_app.presentation.MainActivityViewModel
@@ -49,7 +50,7 @@ class PhotoFragment : Fragment() {
 
     @Inject
     @field:Named("tagViewPool")
-    lateinit var tagViewPool: RecyclerView.RecycledViewPool
+    lateinit var tagViewPool: RecycledViewPool
 
     @Inject
     @JvmField
