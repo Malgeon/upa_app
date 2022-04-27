@@ -6,3 +6,11 @@ interface UnsplashPhotoDataSource {
     fun getRemotePhotoData(): UnsplashPhotoData?
 }
 
+class DefaultUnsplashPhotoDataSource : UnsplashPhotoDataSource {
+
+
+    override fun getRemotePhotoData(): UnsplashPhotoData? {
+        TODO("Not yet implemented")
+    }
+
+}
