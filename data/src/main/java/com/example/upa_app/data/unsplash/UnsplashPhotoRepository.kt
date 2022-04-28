@@ -60,11 +60,19 @@ class UnsplashPhotoRepository @Inject constructor(
     fun getOfflinePhotoData(): UnsplashPhotoData {
         synchronized(loadPhotoDataLock) {
             val offlineData = unsplashPhotoDataCache ?: getCacheOrLocalDataAndPopulatePhoto()
+            unsplashPhotoDataCache = offlineData
+            return offlineData
         }
     }
 
     private fun getCacheOrLocalDataAndPopulatePhoto(): UnsplashPhotoData {
+        val photoData = getCacheOrLocalData()
 
+    }
+
+    private fun getCacheOrLocalData(): UnsplashPhotoData {
+        // First, try the local cache:
+        var photoData =
     }
 
     open fun populatePhotoData(photoData: UnsplashPhotoData) {
