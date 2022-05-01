@@ -6,7 +6,7 @@ import com.example.upa_app.model.unsplash.UnsplashPhotoData
 import javax.inject.Inject
 
 interface UnsplashPhotoDataSource {
-    fun getRemotePhotoData(): UnsplashPhotoData?
+    suspend fun getRemotePhotoData(): UnsplashPhotoData?
 }
 
 class DefaultUnsplashPhotoDataSource @Inject constructor(
@@ -15,14 +15,12 @@ class DefaultUnsplashPhotoDataSource @Inject constructor(
 
 
     override suspend fun getRemotePhotoData(): UnsplashPhotoData? {
-        return getRandomPhotos(1).map {
-            UnsplashPhotoData(it.id, it.urls, it.user)
-        }
+        return UnsplashPhotoData(getRandomPhotos(1))
     }
 
 
-    suspend fun getRandomPhotos(count: Int): List<UnsplashPhoto> {
-        return service.randomPhotos(count)
+    private suspend fun getRandomPhotos(count: Int): List<UnsplashPhoto> {
+        return service.searchRandomPhotos(count)
     }
 
 }
