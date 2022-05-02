@@ -1,11 +1,13 @@
 package com.example.upa_app.data.unsplash
 
+import androidx.annotation.WorkerThread
 import com.example.upa_app.data.UpdateSource
 import com.example.upa_app.data.db.UnsplashDao
 import com.example.upa_app.data.db.UnsplashEntity
 import com.example.upa_app.model.unsplash.UnsplashPhotoData
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableSharedFlow
+import com.example.upa_app.shared.result.Result
+import kotlinx.coroutines.flow.*
+import timber.log.Timber
 import java.io.IOException
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -84,5 +86,54 @@ class UnsplashPhotoRepository @Inject constructor(
             )
         }
         unsplashDao.insertAll(photoEntity)
+    }
+
+
+    @WorkerThread
+    override fun getObservableUserEvents(
+        userId: String?
+    ): Flow<Result<ObservableUserEvents>> {
+        return flow {
+            emit(Result.Loading)
+            // If there no logged-in user, return the map with null UserEvents
+            if (userId == null) {
+                Timber.d(
+                    """EventRepository: No user logged in,
+                        |returning session without user events.""".trimMargin()
+                )
+                val allSessions = sessionRepository.getSessions()
+                val userSessions = mergeUserDataAndSessions(null, allSessions)
+                emit(
+                    Result.Success(
+                        ObservableUserEvents(
+                            userSessions = userSessions
+                        )
+                    )
+                )
+            } else {
+                emitAll(
+                    userEventDataSource.getObservableUserEvents(userId).map { userEvents ->
+                        Timber.d(
+                            """EventRepository: Received ${userEvents.userEvents.size}
+                                |user events changes""".trimMargin()
+                        )
+                        // Get the sessions, synchronously
+                        val allSessions = sessionRepository.getSessions()
+                        val userSessions = mergeUserDataAndSessions(userEvents, allSessions)
+                        // TODO(b/122306429) expose user events messages separately
+                        val userEventsMessageSession = allSessions.firstOrNull {
+                            it.id == userEvents.userEventsMessage?.sessionId
+                        }
+                        Result.Success(
+                            ObservableUserEvents(
+                                userSessions = userSessions,
+                                userMessage = userEvents.userEventsMessage,
+                                userMessageSession = userEventsMessageSession
+                            )
+                        )
+                    }
+                )
+            }
+        }
     }
 }
