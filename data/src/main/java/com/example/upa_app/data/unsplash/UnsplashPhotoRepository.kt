@@ -32,6 +32,7 @@ class UnsplashPhotoRepository @Inject constructor(
     // Prevents multiple consumers requesting data at the same time
     private val loadPhotoDataLock = Any()
 
+    @WorkerThread
     fun refreshCacheWithRemotePhotoData() {
         val unsplashPhotoData = try {
             remoteDataSource.getRemotePhotoData()
@@ -90,7 +91,7 @@ class UnsplashPhotoRepository @Inject constructor(
 
 
     @WorkerThread
-    override fun getObservableUserEvents(
+    fun getObservableUserEvents(
         userId: String?
     ): Flow<Result<ObservableUserEvents>> {
         return flow {
