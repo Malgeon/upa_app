@@ -89,6 +89,34 @@ class UnsplashPhotoRepository @Inject constructor(
         unsplashDao.insertAll(photoEntity)
     }
 
+    @WorkerThread
+    fun refreshCacheWithRemotePhotoDataFlow(): Flow<Result<T>> {
+        val unsplashPhotoData = try {
+            remoteDataSource.getRemotePhotoData()
+        } catch (e: IOException) {
+            latestException = e
+            throw e
+        }
+        if (unsplashPhotoData == null) {
+            val e = Exception("Remote returned no photo data")
+            latestException = e
+            throw e
+        }
+
+        // Network data success!
+        // Update cache
+        synchronized(loadPhotoDataLock) {
+            unsplashPhotoDataCache = unsplashPhotoData
+            populatePhotoData(unsplashPhotoData)
+        }
+
+        // Update meta
+        latestException = null
+        dataLastUpdatedFlow.tryEmit(System.currentTimeMillis())
+        latestUpdateSource = UpdateSource.NETWORK
+        latestException = null
+    }
+
 
     @WorkerThread
     fun getObservableUserEvents(
