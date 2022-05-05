@@ -90,17 +90,17 @@ class UnsplashPhotoRepository @Inject constructor(
     }
 
     @WorkerThread
-    fun refreshCacheWithRemotePhotoDataFlow(): Flow<Result<T>> {
+    fun refreshCacheWithRemotePhotoDataFlow(): Flow<Result<T>> =
+        flow {
         val unsplashPhotoData = try {
             remoteDataSource.getRemotePhotoData()
         } catch (e: IOException) {
-            latestException = e
-            throw e
+            emit(Result.Error(e))
         }
         if (unsplashPhotoData == null) {
             val e = Exception("Remote returned no photo data")
             latestException = e
-            throw e
+            emit(Result.Error(e))
         }
 
         // Network data success!
