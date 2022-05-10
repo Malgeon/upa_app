@@ -1,8 +1,7 @@
 package com.example.upa_app.data.unsplash
 
 class UnsplashPhotoDefaultRepository constructor(
-    private val conferenceApi: ConferenceApi,
-    private val githubApi: GithubApi,
+    private val remoteDataSource: UnsplashPhotoDataSource,
     private val localCacheProvider: LocalCacheProvider
 ) {
 
