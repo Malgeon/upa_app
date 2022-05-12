@@ -11,5 +11,5 @@ interface UnsplashDao {
     fun insertAll(speakers: List<UnsplashEntity>)
 
     @Query("SELECT speakerId FROM speakersFts WHERE speakersFts MATCH :query")
-    fun searchAll(query: String): List<String>
+    fun searchAll(query: String): List<UnsplashEntity>
 }

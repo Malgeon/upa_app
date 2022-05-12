@@ -76,7 +76,9 @@ class UnsplashPhotoRepository @Inject constructor(
 
     private fun getCacheOrLocalData(): UnsplashPhotoData {
         // First, try the local cache:
-        var conferenceData = unsplashDao.searchAll()
+        var conferenceData = unsplashDao.searchAll("test").map {
+
+        }
 
         // Cache success!
         if (conferenceData != null) {
@@ -85,7 +87,7 @@ class UnsplashPhotoRepository @Inject constructor(
         }
 
         // Second, use the local data:
-        conferenceData = unsplashDao.searchAll()
+        conferenceData = unsplashDao.searchAll("test")
         latestUpdateSource = UpdateSource.LOCAL
         return conferenceData
     }
