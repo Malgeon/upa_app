@@ -1,12 +1,11 @@
 package com.example.upa_app.data.unsplash
 
-import androidx.annotation.WorkerThread
 import com.example.upa_app.data.UpdateSource
 import com.example.upa_app.data.db.*
-import com.example.upa_app.model.ConferenceData
 import com.example.upa_app.model.ConferenceDay
 import com.example.upa_app.model.unsplash.UnsplashPhotoData
-import com.example.upa_app.shared.result.Result
+import com.example.upa_app.model.unsplash.UnsplashPhotoUrls
+import com.example.upa_app.model.unsplash.UnsplashUser
 import com.example.upa_app.shared.util.TimeUtils
 import kotlinx.coroutines.flow.*
 import timber.log.Timber
@@ -20,10 +19,7 @@ class UnsplashPhotoRepository @Inject constructor(
     private val unsplashDao: UnsplashDao
 ) {
     // In-memory cache of the conference data
-    private var conferenceDataCache: ConferenceData? = null
-
-    val currentConferenceDataVersion: Int
-        get() = conferenceDataCache?.version ?: 0
+    private var conferenceDataCache: UnsplashPhotoData? = null
 
     var latestException: Exception? = null
         private set
@@ -37,9 +33,9 @@ class UnsplashPhotoRepository @Inject constructor(
     // Prevents multiple consumers requesting data at the same time
     private val loadConfDataLock = Any()
 
-    fun refreshCacheWithRemoteConferenceData() {
+    suspend fun refreshCacheWithRemoteConferenceData() {
         val conferenceData = try {
-            remoteDataSource.getRemoteConferenceData()
+            remoteDataSource.getRemotePhotoData()
         } catch (e: IOException) {
             latestException = e
             throw e
@@ -64,23 +60,23 @@ class UnsplashPhotoRepository @Inject constructor(
         latestException = null
     }
 
-    fun getOfflineConferenceData(): ConferenceData {
+    fun getOfflineConferenceData(): UnsplashPhotoData {
         synchronized(loadConfDataLock) {
-            val offlineData = conferenceDataCache ?: getCacheOrBootstrapDataAndPopulateSearch()
+            val offlineData = conferenceDataCache ?: getCacheOrLocalDataAndPopulateSearch()
             conferenceDataCache = offlineData
             return offlineData
         }
     }
 
-    private fun getCacheOrBootstrapDataAndPopulateSearch(): ConferenceData {
-        val conferenceData = getCacheOrBootstrapData()
+    private fun getCacheOrLocalDataAndPopulateSearch(): UnsplashPhotoData {
+        val conferenceData = getCacheOrLocalData()
         populateSearchData(conferenceData)
         return conferenceData
     }
 
-    private fun getCacheOrBootstrapData(): ConferenceData {
+    private fun getCacheOrLocalData(): UnsplashPhotoData {
         // First, try the local cache:
-        var conferenceData = remoteDataSource.getOfflineConferenceData()
+        var conferenceData = unsplashDao.searchAll()
 
         // Cache success!
         if (conferenceData != null) {
@@ -88,23 +84,22 @@ class UnsplashPhotoRepository @Inject constructor(
             return conferenceData
         }
 
-        // Second, use the bootstrap file:
-        conferenceData = boostrapDataSource.getOfflineConferenceData()!!
-        latestUpdateSource = UpdateSource.BOOTSTRAP
+        // Second, use the local data:
+        conferenceData = unsplashDao.searchAll()
+        latestUpdateSource = UpdateSource.LOCAL
         return conferenceData
     }
 
-    open fun populateSearchData(conferenceData: ConferenceData) {
+    open fun populateSearchData(photoData: UnsplashPhotoData) {
         Timber.e("data populate")
-        val sessionFtsEntities = conferenceData.sessions.map { session ->
-            SessionFtsEntity(
-                sessionId = session.id,
-                title = session.title,
-                description = session.description,
-                speakers = session.speakers.joinToString { it.name }
+        val unsplashEntity = photoData.unsplashPhotos.map { photo ->
+            UnsplashEntity(
+                id = photo.id,
+                urls = photo.urls,
+                user = photo.user
             )
         }
-        unsplashDao.sessionFtsDao().insertAll(sessionFtsEntities)
+        unsplashDao.insertAll(unsplashEntity)
     }
 
     open fun getConferenceDays(): List<ConferenceDay> = TimeUtils.ConferenceDays

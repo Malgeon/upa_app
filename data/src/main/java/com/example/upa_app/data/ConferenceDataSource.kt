@@ -11,5 +11,6 @@ enum class UpdateSource {
     NONE,
     NETWORK,
     CACHE,
-    BOOTSTRAP
+    BOOTSTRAP,
+    LOCAL
 }
