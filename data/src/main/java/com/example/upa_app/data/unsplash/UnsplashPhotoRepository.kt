@@ -68,6 +68,14 @@ class UnsplashPhotoRepository @Inject constructor(
         }
     }
 
+    fun getOfflineConferenceDataTest(): UnsplashPhotoData {
+        synchronized(loadConfDataLock) {
+            val offlineData = conferenceDataCache ?: getLocalDataSearch()
+            conferenceDataCache = offlineData
+            return offlineData
+        }
+    }
+
     private fun getCacheOrLocalDataAndPopulateSearch(): UnsplashPhotoData {
         val conferenceData = getCacheOrLocalData()
         populateSearchData(conferenceData)
@@ -93,7 +101,6 @@ class UnsplashPhotoRepository @Inject constructor(
     }
 
     open fun populateSearchData(photoData: UnsplashPhotoData) {
-        Timber.e("data populate")
         val unsplashEntity = photoData.unsplashPhotos.map { photo ->
             UnsplashEntity(
                 id = photo.id,
